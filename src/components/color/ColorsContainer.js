@@ -42,7 +42,7 @@ const ColorsContainer = props => {
 	return (
 		<Container>
 			{props.colors.map((color, index) => {
-				return <ColorCard {...color} />
+				return <ColorCard {...color} key={`${index}-${color}`} />
 			})}
 		</Container>
 	)

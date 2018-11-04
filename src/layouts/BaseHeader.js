@@ -35,7 +35,7 @@ const Header = styled.header`
 		}
 
 		&.active {
-			background-color: #f5eaf7;
+			background-color: #f3f2ff;
 			border-bottom: 2px solid crimson;
 		}
 	}

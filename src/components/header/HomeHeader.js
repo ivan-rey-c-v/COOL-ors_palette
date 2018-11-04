@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Link } from '@reach/router'
 import BaseHeader from '../../layouts/BaseHeader'
 import COOLors from './COOLors'
+import ShuffleItem from './ShuffleItem'
+import SaveItem from './SaveItem'
 
 const HomeHeader = props => {
 	const [active, setActive] = useState('home')
@@ -27,10 +29,10 @@ const HomeHeader = props => {
 
 			<BaseHeader.Container>
 				<BaseHeader.Item>
-					<div>save</div>
+					<SaveItem />
 				</BaseHeader.Item>
 				<BaseHeader.Item>
-					<div>shuffle</div>
+					<ShuffleItem />
 				</BaseHeader.Item>
 			</BaseHeader.Container>
 		</BaseHeader>
