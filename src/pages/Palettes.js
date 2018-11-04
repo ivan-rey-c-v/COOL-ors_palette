@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import MainLayout from '../layouts/MainLayout'
+import PalettesContainer from '../components/color/PalettesContainer'
 
 const Home = props => {
 	return (
 		<MainLayout path={props.path}>
-			<h1>This is the palletes page!</h1>
+			<PalettesContainer />
 		</MainLayout>
 	)
 }
