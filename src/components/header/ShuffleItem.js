@@ -1,13 +1,13 @@
 import React from 'react'
-import HeaderItemLayout from '../../layouts/HeaderItemLayout'
+import HeaderIconLayout from '../../layouts/HeaderIconLayout'
 import { ReactComponent as ShuffleSVG } from '../../icons/random.svg'
 
 const ShuffleItem = props => {
 	return (
-		<HeaderItemLayout>
+		<HeaderIconLayout>
 			<ShuffleSVG />
 			<p>shuffle</p>
-		</HeaderItemLayout>
+		</HeaderIconLayout>
 	)
 }
 

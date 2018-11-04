@@ -2,7 +2,7 @@ import React from 'react'
 
 import styled from 'styled-components'
 
-const Header = styled.header`
+const BaseHeader = styled.header`
 	height: 3rem;
 	box-shadow: 0 0 8px lightgray;
 
@@ -41,16 +41,16 @@ const Header = styled.header`
 	}
 `
 
-const BaseHeader = ({ children }) => {
+const Header = ({ children }) => {
 	return (
-		<Header>
+		<BaseHeader>
 			<nav>{children}</nav>
-		</Header>
+		</BaseHeader>
 	)
 }
 
-// trying subcomponents, eg. <BaseHeader.Container /> :-)
-BaseHeader.Container = function itemContainer(props) {
+// trying subcomponents, eg. <Header.Container /> :-)
+Header.Container = function itemContainer(props) {
 	return (
 		<div {...props} className="item-container">
 			{props.children}
@@ -58,7 +58,7 @@ BaseHeader.Container = function itemContainer(props) {
 	)
 }
 
-BaseHeader.Item = function item(props) {
+Header.Item = function item(props) {
 	// use 'true' : 'false' (as string) as react recommendation
 	const className = props.active === 'true' ? `item active` : 'item'
 
@@ -69,4 +69,4 @@ BaseHeader.Item = function item(props) {
 	)
 }
 
-export default BaseHeader
+export default Header
