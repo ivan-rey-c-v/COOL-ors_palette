@@ -3,14 +3,30 @@ import React from 'react'
 import { ReactComponent as UnlockSVG } from '../../icons/unlock.svg'
 import { ReactComponent as LockSVG } from '../../icons/lock.svg'
 
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const Div = styled.div`
 	display: flex;
 	align-items: center;
-	height: 2.5rem;
+	font-weight: 600;
 	width: 250px;
-	box-shadow: 2px 2px 4px lightgray;
+
+	${props => {
+		// used in PalettesPage ColorSet
+		if (props.isColorSetItem) {
+			return css`
+				height: 1.25rem;
+				font-size: 0.85rem;
+			`
+		}
+
+		// default: used in HomePage ColorsContainer
+		return css`
+			height: 2.5rem;
+			font-size: 1rem;
+			box-shadow: 2px 2px 4px lightgray;
+		`
+	}};
 
 	position: relative;
 	.lock {
@@ -42,19 +58,20 @@ const Div = styled.div`
 	}
 
 	.name {
-		font-size: 0.85rem;
-		font-weight: 600;
-		flex: 2.5 1 0px;
+		font-size: 0.75rem;
+		width: 40%;
 		padding-left: 0.25rem;
+		text-align: start;
 	}
 	.hex {
-		flex: 1 1 0px;
+		width: 30%;
 		padding-right: 0.25rem;
+		text-align: end;
 	}
 `
 
 const ColorBox = styled.span`
-	flex: 1.75 1 0px;
+	width: 30%;
 	height: 100%;
 
 	${props => ({
@@ -62,17 +79,24 @@ const ColorBox = styled.span`
 	})};
 `
 
-const ColorCard = props => {
-	const Icon = props.isLocked ? LockSVG : UnlockSVG
+const ColorCard = ({ isLocked, isColorSetItem, name, hex }) => {
+	let IconDiv = null
 
-	return (
-		<Div>
+	if (!isColorSetItem) {
+		let Icon = isLocked ? LockSVG : UnlockSVG
+		IconDiv = (
 			<span className="lock">
 				<Icon />
 			</span>
-			<ColorBox color={props.hex} />
-			<span className="name"> {props.name} </span>
-			<span className="hex">{props.hex}</span>
+		)
+	}
+
+	return (
+		<Div isColorSetItem={isColorSetItem}>
+			{IconDiv}
+			<ColorBox color={hex} />
+			<span className="name"> {name} </span>
+			<span className="hex">{hex}</span>
 		</Div>
 	)
 }
