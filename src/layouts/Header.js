@@ -4,7 +4,12 @@ import styled from 'styled-components'
 
 const BaseHeader = styled.header`
 	height: 3rem;
+	min-height: 3rem;
 	box-shadow: 0 0 8px lightgray;
+	position: sticky;
+	top: 0;
+	background-color: white;
+	z-index: 10;
 
 	nav {
 		margin: 0 auto;

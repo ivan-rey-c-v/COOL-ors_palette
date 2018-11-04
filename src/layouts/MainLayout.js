@@ -3,7 +3,7 @@ import MainHeader from '../components/header/MainHeader'
 import styled from 'styled-components'
 
 const Main = styled.main`
-	height: 100%;
+	height: auto;
 	width: 100%;
 
 	display: flex;

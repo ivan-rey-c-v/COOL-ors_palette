@@ -18,7 +18,7 @@ const Container = styled.div`
 	align-content: flex-start;
 
 	> div {
-		margin: 0.5rem 0;
+		margin: 0.4rem 0;
 
 		@media screen and (min-width: 500px) {
 			margin: 0.5rem 1rem;

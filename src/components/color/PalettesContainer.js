@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 const Container = styled.div`
 	align-self: center;
-	height: 100%;
+	height: auto;
 	max-width: 1200px;
 	padding-top: 1rem;
 
