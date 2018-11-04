@@ -30,6 +30,8 @@ const BaseHeader = styled.header`
 		display: flex;
 		align-items: center;
 		cursor: pointer;
+		font-size: 0.8rem;
+		font-weight: 600;
 
 		:hover {
 			background-color: #e9e8fc;

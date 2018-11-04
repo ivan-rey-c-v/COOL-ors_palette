@@ -5,9 +5,7 @@ import COOLors from './COOLors'
 import ShuffleItem from './ShuffleItem'
 import SaveItem from './SaveItem'
 
-const MainHeader = props => {
-	const { path } = props
-
+const MainHeader = ({ path, handleSave }) => {
 	const handleNavigatePage = e => {
 		const name = e.currentTarget.getAttribute('name')
 		navigate(name)
@@ -31,13 +29,13 @@ const MainHeader = props => {
 					active={inPalettesPage ? 'true' : 'false'}
 					onClick={handleNavigatePage}
 				>
-					<div>Palettes</div>
+					<div>PALETTES</div>
 				</Header.Item>
 			</Header.Container>
 
 			{inHomePage && (
 				<Header.Container>
-					<Header.Item>
+					<Header.Item onClick={handleSave}>
 						<SaveItem />
 					</Header.Item>
 					<Header.Item>
