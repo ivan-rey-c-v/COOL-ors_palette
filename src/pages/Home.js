@@ -1,19 +1,24 @@
 import React, { useState, useContext } from 'react'
 import { StoreContext } from '../ContextStore'
+import { addItem } from '../utils/webStorage'
+import randomID from '../utils/randomID'
 
 import MainLayout from '../layouts/MainLayout'
 import ColorsContainer from '../components/color/ColorsContainer'
 import SaveColorModal from '../components/SaveColorModal'
-import { addItem } from '../utils/webStorage'
 
 const Home = ({ path }) => {
 	const [isModalOpen, setIsModalOpen] = useState(false)
 	const store = useContext(StoreContext)
 	const colors = Object.values(store.store.palette)
 
-	const handleSave = e => {
+	const handleSave = titleInput => e => {
 		const rawColors = colors.map(({ hex, name }) => ({ hex, name }))
-		addItem(rawColors)
+		addItem({
+			id: randomID(),
+			title: titleInput.current.value,
+			colors: rawColors
+		})
 		setIsModalOpen(false)
 	}
 	const toggleModal = e => {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import ColorCard from './color/ColorCard'
 
 import styled from 'styled-components'
@@ -71,7 +71,9 @@ const Modal = styled.div`
 	}
 `
 
-const SaveModal = props => {
+const SaveColorModal = props => {
+	const titleInput = useRef(null)
+
 	return (
 		<ModalWrapper>
 			<Modal>
@@ -81,13 +83,16 @@ const SaveModal = props => {
 					))}
 				</div>
 				<div className="title-input">
-					<input placeholder="Title" />
+					<input placeholder="Title" name="title" ref={titleInput} />
 				</div>
 				<div className="actions">
 					<button className="cancel" onClick={props.closeModal}>
 						Cancel
 					</button>
-					<button className="confirm" onClick={props.confirmModal}>
+					<button
+						className="confirm"
+						onClick={props.confirmModal(titleInput)}
+					>
 						Save color set
 					</button>
 				</div>
@@ -96,4 +101,4 @@ const SaveModal = props => {
 	)
 }
 
-export default SaveModal
+export default SaveColorModal
