@@ -11,11 +11,20 @@ const Home = ({ path }) => {
 		{ name: 'super blue', hex: '#4567E5' },
 		{ name: 'super crimson', hex: '#e41c55' },
 		{ name: 'super blue', hex: '#2e4567' },
-		{ name: 'super blue', hex: '#2e4567' },
+		{ name: "Purple Mountain's Majesty", hex: '#9D81BA' },
 		{ name: 'super blue', hex: '#2e4567' }
 	])
 
-	const [isModalOpen, setIsModalOpen] = useState(true)
+	const [isModalOpen, setIsModalOpen] = useState(false)
+
+	const url = 'https://gist.github.com/jjdelc/1868136'
+	console.log(url)
+
+	fetch(url, {
+		mode: 'cors'
+	})
+		.then(data => data.json())
+		.then(json => console.log('crayola json', { json }))
 
 	const handleSave = e => {
 		console.log(e.currentTarget)
