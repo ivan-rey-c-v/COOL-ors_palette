@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
 import Routes from './Routes'
+import { StoreProvider } from './ContextStore'
 
 class App extends Component {
 	render() {
-		return <Routes />
+		return (
+			<StoreProvider>
+				<Routes />
+			</StoreProvider>
+		)
 	}
 }
 

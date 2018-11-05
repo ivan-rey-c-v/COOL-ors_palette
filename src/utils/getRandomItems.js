@@ -1,11 +1,11 @@
 import diffArrayOfObj from './diffArrayOfObj'
 import getRandomNumber from './getRandomNumber'
 
-function getRandomItems(count, array, excludeList) {
+function getRandomItems(count, array, excludeList = []) {
 	let indexes = []
 	let items = []
 
-	if (excludeList) {
+	if (excludeList.length > 0) {
 		array = diffArrayOfObj(array, excludeList)
 	}
 

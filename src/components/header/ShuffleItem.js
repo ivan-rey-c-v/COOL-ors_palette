@@ -6,7 +6,7 @@ const ShuffleItem = props => {
 	return (
 		<HeaderIconLayout>
 			<ShuffleSVG />
-			<p>shuffle</p>
+			<p>generate</p>
 		</HeaderIconLayout>
 	)
 }
