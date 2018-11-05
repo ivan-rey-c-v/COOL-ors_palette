@@ -20,6 +20,11 @@ export function removeItem(item) {
 
 export function addItem(item) {
 	let list = getList()
+
+	if (!Array.isArray(list)) {
+		list = []
+	}
+
 	list.push(item)
 
 	setList(list)

@@ -71,60 +71,25 @@ const Modal = styled.div`
 	}
 `
 
-const colors = [
-	{
-		name: 'red',
-		hex: 'red'
-	},
-	{
-		name: 'blue',
-		hex: 'blue'
-	},
-	{
-		name: 'yellow',
-		hex: 'yellow'
-	},
-	{
-		name: 'firebrick',
-		hex: 'firebrick'
-	},
-	{
-		name: 'green',
-		hex: 'green'
-	},
-	{
-		name: 'orange',
-		hex: 'orange'
-	},
-	{
-		name: 'teal',
-		hex: 'teal'
-	},
-	{
-		name: 'crimson',
-		hex: 'crimson'
-	},
-	{
-		name: 'gray',
-		hex: 'gray'
-	}
-]
-
 const SaveModal = props => {
 	return (
 		<ModalWrapper>
 			<Modal>
 				<div>
-					{colors.map(color => (
-						<ColorCard {...color} isColorSetItem />
+					{props.colors.map(color => (
+						<ColorCard {...color} isColorSetItem key={color.id} />
 					))}
 				</div>
 				<div className="title-input">
 					<input placeholder="Title" />
 				</div>
 				<div className="actions">
-					<button className="cancel">Cancel</button>
-					<button className="confirm">Save color set</button>
+					<button className="cancel" onClick={props.closeModal}>
+						Cancel
+					</button>
+					<button className="confirm" onClick={props.confirmModal}>
+						Save color set
+					</button>
 				</div>
 			</Modal>
 		</ModalWrapper>

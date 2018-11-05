@@ -10,15 +10,16 @@ const Main = styled.main`
 	flex-direction: column;
 `
 
-const MainLayout = ({ path, children, handleSave, generateColors }) => {
+const MainLayout = props => {
 	return (
 		<Main>
 			<MainHeader
-				path={path}
-				handleSave={handleSave}
-				generateColors={generateColors}
+				path={props.path}
+				toggleModal={props.toggleModal}
+				handleSave={props.handleSave}
+				generateColors={props.generateColors}
 			/>
-			{children}
+			{props.children}
 		</Main>
 	)
 }

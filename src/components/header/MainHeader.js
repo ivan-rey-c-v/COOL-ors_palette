@@ -5,7 +5,7 @@ import COOLors from './COOLors'
 import ShuffleItem from './ShuffleItem'
 import SaveItem from './SaveItem'
 
-const MainHeader = ({ path, handleSave, generateColors }) => {
+const MainHeader = ({ path, handleSave, generateColors, toggleModal }) => {
 	const handleNavigatePage = e => {
 		const name = e.currentTarget.getAttribute('name')
 		navigate(name)
@@ -35,7 +35,7 @@ const MainHeader = ({ path, handleSave, generateColors }) => {
 
 			{inHomePage && (
 				<Header.Container>
-					<Header.Item onClick={handleSave}>
+					<Header.Item onClick={toggleModal}>
 						<SaveItem />
 					</Header.Item>
 					<Header.Item onClick={generateColors}>
