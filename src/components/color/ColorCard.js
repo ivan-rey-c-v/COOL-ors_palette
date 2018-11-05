@@ -79,24 +79,28 @@ const ColorBox = styled.span`
 	})};
 `
 
-const ColorCard = ({ isLocked, isColorSetItem, name, hex }) => {
+const ColorCard = props => {
 	let IconDiv = null
 
-	if (!isColorSetItem) {
-		let Icon = isLocked ? LockSVG : UnlockSVG
+	if (!props.isColorSetItem) {
+		let Icon = props.isLocked ? LockSVG : UnlockSVG
 		IconDiv = (
-			<span className="lock">
+			<span
+				className="lock"
+				onClick={props.toggleLock}
+				data-id={props.id}
+			>
 				<Icon />
 			</span>
 		)
 	}
 
 	return (
-		<Div isColorSetItem={isColorSetItem}>
+		<Div isColorSetItem={props.isColorSetItem}>
 			{IconDiv}
-			<ColorBox color={hex} />
-			<span className="name"> {name} </span>
-			<span className="hex">{hex}</span>
+			<ColorBox color={props.hex} />
+			<span className="name"> {props.name} </span>
+			<span className="hex">{props.hex}</span>
 		</Div>
 	)
 }

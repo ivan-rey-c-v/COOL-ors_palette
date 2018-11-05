@@ -19,4 +19,4 @@ const MainLayout = ({ path, children, handleSave }) => {
 	)
 }
 
-export default MainLayout
+export default React.memo(MainLayout)

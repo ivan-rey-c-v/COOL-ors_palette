@@ -5,18 +5,44 @@ import crayolaColors from './utils/crayolaColors'
 export const StoreContext = createContext()
 
 const initialState = {
-	palettes: [],
-	colors: []
+	palette: null,
+	colorSets: []
 }
 
 function reducer(state, action) {
 	switch (action.type) {
-		case 'GENERATE_COLOR': {
-			let excludeList = action.excludeList
-			let count = excludeList ? 8 - excludeList.length : 8
-			let colors = getRandomItems(count, crayolaColors, excludeList)
+		case 'INIT_PALETTE': {
+			let count = 8
+			let palette = {}
+			let colors = getRandomItems(count, crayolaColors)
 
-			return { ...state, colors }
+			for (let i = 0; i < count; i++) {
+				let id = `palette-${i}`
+				palette[id] = {
+					...colors[i],
+					id,
+					isLocked: false
+				}
+			}
+			return { ...state, palette }
+		}
+
+		case 'GENERATE_COLOR': {
+			//
+			return
+		}
+
+		case 'TOGGLE_LOCK': {
+			return {
+				...state,
+				palette: {
+					...state.palette,
+					[action.id]: {
+						...state.palette[action.id],
+						isLocked: !state.palette[action.id].isLocked
+					}
+				}
+			}
 		}
 
 		default: {
@@ -27,7 +53,7 @@ function reducer(state, action) {
 
 export const StoreProvider = ({ children }) => {
 	const [store, dispatch] = useReducer(reducer, initialState, {
-		type: 'GENERATE_COLOR'
+		type: 'INIT_PALETTE'
 	})
 
 	const value = {

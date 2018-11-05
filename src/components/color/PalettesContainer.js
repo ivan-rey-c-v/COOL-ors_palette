@@ -195,4 +195,4 @@ const PalettesContainer = props => {
 	)
 }
 
-export default PalettesContainer
+export default React.memo(PalettesContainer)

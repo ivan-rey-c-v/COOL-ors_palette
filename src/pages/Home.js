@@ -13,12 +13,19 @@ const Home = ({ path }) => {
 		setIsModalOpen(!isModalOpen)
 	}
 
+	const toggleLock = e => {
+		let dataID = e.currentTarget.getAttribute('data-id')
+		store.dispatch({ type: 'TOGGLE_LOCK', id: dataID })
+	}
+
+	const colors = Object.values(store.store.palette)
+
 	return (
 		<MainLayout path={path} handleSave={handleSave}>
-			<ColorsContainer colors={store.store.colors} />
+			<ColorsContainer colors={colors} toggleLock={toggleLock} />
 			{isModalOpen && <SaveModal />}
 		</MainLayout>
 	)
 }
 
-export default Home
+export default React.memo(Home)

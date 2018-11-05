@@ -53,4 +53,4 @@ const ColorSet = ({ title, colors }) => {
 	)
 }
 
-export default ColorSet
+export default React.memo(ColorSet)
