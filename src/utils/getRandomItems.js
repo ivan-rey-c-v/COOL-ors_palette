@@ -10,7 +10,7 @@ function getRandomItems(count, array, excludeList = []) {
 	}
 
 	for (let i = 0; i < count; i++) {
-		let index = getRandomNumber(0, count)
+		let index = getRandomNumber(0, count, indexes)
 		indexes.push(index)
 
 		let item = array[index]

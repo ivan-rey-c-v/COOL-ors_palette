@@ -27,9 +27,51 @@ function reducer(state, action) {
 			return { ...state, palette }
 		}
 
-		case 'GENERATE_COLOR': {
+		case 'GENERATE_COLORS': {
 			//
-			return
+			let excludeList = Object.values(state.palette).reduce(
+				(accum, color) => {
+					if (color.isLocked) {
+						const { hex, name } = color
+						// SHOULD: position <hex> first before <name>
+						// diffArrayOfObj uses JSON.stringify and key position is vital
+						accum.push({ hex, name })
+					}
+					return accum
+				},
+				[]
+			)
+
+			let count = 8 - excludeList.length
+			let colors = getRandomItems(count, crayolaColors, excludeList)
+
+			let container = Object.entries(state.palette).reduce(
+				(accum, [id, value]) => {
+					// id = `palette-${index}`
+					// value = {name, hex, isLocked, id:id}
+					if (value.isLocked) {
+						// Same as prev
+						accum.palette[id] = value
+						return accum
+					} else {
+						// Add new color with same ID
+						accum.palette[id] = {
+							...colors[accum.count],
+							id,
+							isLocked: false
+						}
+						accum.count += 1
+						return accum
+					}
+				},
+				{
+					palette: {},
+					count: 0
+				}
+			)
+
+			// TODO: bug where same colors are generated
+			return { ...state, palette: container.palette }
 		}
 
 		case 'TOGGLE_LOCK': {

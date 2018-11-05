@@ -1,6 +1,7 @@
 import getRandomNumber from '../utils/getRandomNumber'
 import diffArrayOfObj from '../utils/diffArrayOfObj'
 import getRandomItems from '../utils/getRandomItems'
+import crayolaColors from '../utils/crayolaColors'
 
 import { arr, exclude } from './mocks.js'
 
@@ -15,13 +16,34 @@ describe('getRandomNumber', () => {
 			expect(res).toBeWithin(min, max)
 		}
 	})
+
+	test('should be Not include All items from excludeList', () => {
+		let min = 2
+		let max = 15
+		let excludeNumbers = [3, 4, 5]
+
+		for (let i = 0; i < 10; i++) {
+			let res = getRandomNumber(min, max)
+			expect(res).not.toIncludeAllMembers(excludeNumbers)
+		}
+	})
+	test('should be Not include ANY items from excludeList', () => {
+		let min = 2
+		let max = 15
+		let excludeNumbers = [3, 4, 5]
+
+		for (let i = 0; i < 10; i++) {
+			let res = getRandomNumber(min, max)
+			expect(res).not.toIncludeAnyMembers(excludeNumbers)
+		}
+	})
 })
 
 describe('diffArrayOfObj', () => {
-	let res = diffArrayOfObj(arr, exclude)
+	let res = diffArrayOfObj(crayolaColors, exclude)
 
 	test('length is the diff lengths of two arrays', () => {
-		let size = arr.length - exclude.length
+		let size = crayolaColors.length - exclude.length
 		expect(res).toHaveLength(size)
 	})
 
@@ -39,30 +61,30 @@ describe('getRandomItems', () => {
 
 	test('has same length with count', () => {
 		for (let i = 0; i <= 10; i++) {
-			let res = getRandomItems(count, arr, exclude)
+			let res = getRandomItems(count, crayolaColors, exclude)
 			expect(res).toHaveLength(count)
 		}
 	})
 
 	test('not include ANY items in excludeList', () => {
 		for (let i = 0; i <= 10; i++) {
-			let res = getRandomItems(count, arr, exclude)
+			let res = getRandomItems(count, crayolaColors, exclude)
 			expect(res).not.toIncludeAnyMembers(exclude)
 		}
 	})
 
 	test('not include ALL items in excludeList', () => {
 		for (let i = 0; i <= 10; i++) {
-			let res = getRandomItems(count, arr, exclude)
+			let res = getRandomItems(count, crayolaColors, exclude)
 			expect(res).not.toIncludeAllMembers(exclude)
 		}
 	})
 
 	test('to include ANY items in diffArray', () => {
-		let diff = diffArrayOfObj(arr, exclude)
+		let diff = diffArrayOfObj(crayolaColors, exclude)
 
 		for (let i = 0; i <= 10; i++) {
-			let res = getRandomItems(count, arr, exclude)
+			let res = getRandomItems(count, crayolaColors, exclude)
 			expect(res).toIncludeAnyMembers(diff)
 		}
 	})

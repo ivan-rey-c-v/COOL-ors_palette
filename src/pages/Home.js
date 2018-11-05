@@ -12,16 +12,22 @@ const Home = ({ path }) => {
 	const handleSave = e => {
 		setIsModalOpen(!isModalOpen)
 	}
-
 	const toggleLock = e => {
 		let dataID = e.currentTarget.getAttribute('data-id')
 		store.dispatch({ type: 'TOGGLE_LOCK', id: dataID })
+	}
+	const generateColors = e => {
+		store.dispatch({ type: 'GENERATE_COLORS' })
 	}
 
 	const colors = Object.values(store.store.palette)
 
 	return (
-		<MainLayout path={path} handleSave={handleSave}>
+		<MainLayout
+			path={path}
+			handleSave={handleSave}
+			generateColors={generateColors}
+		>
 			<ColorsContainer colors={colors} toggleLock={toggleLock} />
 			{isModalOpen && <SaveModal />}
 		</MainLayout>
