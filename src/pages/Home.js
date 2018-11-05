@@ -1,7 +1,5 @@
 import React, { useState, useContext } from 'react'
 import { StoreContext } from '../ContextStore'
-import { addItem } from '../utils/webStorage'
-import randomID from '../utils/randomID'
 
 import MainLayout from '../layouts/MainLayout'
 import ColorsContainer from '../components/color/ColorsContainer'
@@ -13,11 +11,10 @@ const Home = ({ path }) => {
 	const colors = Object.values(store.store.palette)
 
 	const handleSave = titleInput => e => {
-		const rawColors = colors.map(({ hex, name }) => ({ hex, name }))
-		addItem({
-			id: randomID(),
-			title: titleInput.current.value,
-			colors: rawColors
+		store.dispatch({
+			type: 'ADD_ITEM',
+			colors,
+			title: titleInput.current.value
 		})
 		setIsModalOpen(false)
 	}

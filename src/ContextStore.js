@@ -1,6 +1,8 @@
 import React, { createContext, useReducer } from 'react'
 import getRandomItems from './utils/getRandomItems'
 import crayolaColors from './utils/crayolaColors'
+import { addItem } from './utils/webStorage'
+import randomID from './utils/randomID'
 
 export const StoreContext = createContext()
 
@@ -28,7 +30,6 @@ function reducer(state, action) {
 		}
 
 		case 'GENERATE_COLORS': {
-			//
 			let excludeList = Object.values(state.palette).reduce(
 				(accum, color) => {
 					if (color.isLocked) {
@@ -70,7 +71,6 @@ function reducer(state, action) {
 				}
 			)
 
-			// TODO: bug where same colors are generated
 			return { ...state, palette: container.palette }
 		}
 
@@ -85,6 +85,19 @@ function reducer(state, action) {
 					}
 				}
 			}
+		}
+
+		case 'ADD_ITEM': {
+			let rawColors = action.colors.map(({ hex, name }) => ({
+				hex,
+				name
+			}))
+			addItem({
+				id: randomID(),
+				title: action.title,
+				colors: rawColors
+			})
+			return state
 		}
 
 		default: {
