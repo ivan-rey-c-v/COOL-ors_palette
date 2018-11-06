@@ -1,9 +1,8 @@
 import getRandomNumber from '../utils/getRandomNumber'
-import diffArrayOfObj from '../utils/diffArrayOfObj'
 import getRandomItems from '../utils/getRandomItems'
 import crayolaColors from '../utils/crayolaColors'
 
-import { arr, exclude } from './mocks.js'
+import { exclude } from './mocks.js'
 
 describe('getRandomNumber', () => {
 	test('should be within range', () => {
@@ -36,23 +35,6 @@ describe('getRandomNumber', () => {
 			let res = getRandomNumber(min, max)
 			expect(res).not.toIncludeAnyMembers(excludeNumbers)
 		}
-	})
-})
-
-describe('diffArrayOfObj', () => {
-	let res = diffArrayOfObj(crayolaColors, exclude)
-
-	test('length is the diff lengths of two arrays', () => {
-		let size = crayolaColors.length - exclude.length
-		expect(res).toHaveLength(size)
-	})
-
-	test('not include ALL items in excludeList', () => {
-		expect(res).not.toIncludeAllMembers(exclude)
-	})
-
-	test('not include ANY items in excludeList', () => {
-		expect(res).not.toIncludeAnyMembers(exclude)
 	})
 })
 

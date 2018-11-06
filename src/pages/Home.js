@@ -8,7 +8,7 @@ import SaveColorModal from '../components/SaveColorModal'
 const Home = ({ path }) => {
 	const [isModalOpen, setIsModalOpen] = useState(false)
 	const store = useContext(StoreContext)
-	const colors = Object.values(store.store.palette)
+	const colors = store.store.palette
 
 	const handleSave = titleInput => e => {
 		store.dispatch({
@@ -23,7 +23,7 @@ const Home = ({ path }) => {
 	}
 	const toggleLock = e => {
 		let dataID = e.currentTarget.getAttribute('data-id')
-		store.dispatch({ type: 'TOGGLE_LOCK', id: dataID })
+		store.dispatch({ type: 'TOGGLE_LOCK', indexID: dataID })
 	}
 	const generateColors = e => {
 		store.dispatch({ type: 'GENERATE_COLORS' })

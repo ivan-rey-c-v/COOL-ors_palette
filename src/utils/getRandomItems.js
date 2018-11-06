@@ -1,19 +1,21 @@
-import diffArrayOfObj from './diffArrayOfObj'
 import getRandomNumber from './getRandomNumber'
 
-function getRandomItems(count, array, excludeList = []) {
-	let indexes = []
+function getRandomItems(count, array, excludedIndexes) {
 	let items = []
-
-	if (excludeList.length > 0) {
-		array = diffArrayOfObj(array, excludeList)
-	}
+	let indexes = []
 
 	for (let i = 0; i < count; i++) {
-		let index = getRandomNumber(0, count, indexes)
+		let index = getRandomNumber(0, array.length, [
+			...excludedIndexes,
+			...indexes
+		])
 		indexes.push(index)
 
-		let item = array[index]
+		// should create new color with new props: indexID, isLocked
+		let item = { ...array[index] }
+		item.indexID = index
+		item.isLocked = false
+
 		items.push(item)
 	}
 

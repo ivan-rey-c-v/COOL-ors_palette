@@ -1,90 +1,65 @@
 import React, { createContext, useReducer } from 'react'
-import getRandomItems from './utils/getRandomItems'
-import crayolaColors from './utils/crayolaColors'
+import generateColors from './utils/generateColors'
 import { addItem, getList, removeItem } from './utils/webStorage'
 import randomID from './utils/randomID'
 
 export const StoreContext = createContext()
 
 const initialState = {
-	palette: null,
+	palette: [],
 	colorSets: getList()
 }
 
 function reducer(state, action) {
 	switch (action.type) {
-		case 'INIT_PALETTE': {
-			let count = 8
-			let palette = {}
-			let colors = getRandomItems(count, crayolaColors)
-
-			for (let i = 0; i < count; i++) {
-				let id = `palette-${i}`
-				palette[id] = {
-					...colors[i],
-					id,
-					isLocked: false
+		case 'GENERATE_COLORS': {
+			let excludes = state.palette.reduce(
+				(accum, color, index) => {
+					// color has indexID added from generateColors
+					if (color.isLocked) {
+						accum.id.push(color.indexID)
+						accum.pos.push(index)
+					}
+					return accum
+				},
+				{
+					id: [],
+					pos: []
 				}
+			)
+			let colors = generateColors(excludes.id)
+			let palette
+
+			// position locked colors and add new colors
+			if (colors.length < 8) {
+				palette = []
+				for (let index = 0; index < 8; index++) {
+					// includes in excludes ? :-)
+					if (excludes.pos.includes(index)) {
+						// use colors in excludes (colors.isLocked === true)
+						let color = state.palette[index]
+						palette.push(color)
+					} else {
+						let newColor = colors.shift()
+						palette.push(newColor)
+					}
+				}
+			} else {
+				palette = colors
 			}
 			return { ...state, palette }
 		}
 
-		case 'GENERATE_COLORS': {
-			let excludeList = Object.values(state.palette).reduce(
-				(accum, color) => {
-					if (color.isLocked) {
-						const { hex, name } = color
-						// SHOULD: position <hex> first before <name>
-						// diffArrayOfObj uses JSON.stringify and key position is vital
-						accum.push({ hex, name })
-					}
-					return accum
-				},
-				[]
-			)
-
-			let count = 8 - excludeList.length
-			let colors = getRandomItems(count, crayolaColors, excludeList)
-
-			let container = Object.entries(state.palette).reduce(
-				(accum, [id, value]) => {
-					// id = `palette-${index}`
-					// value = {name, hex, isLocked, id:id}
-					if (value.isLocked) {
-						// Same as prev
-						accum.palette[id] = value
-						return accum
-					} else {
-						// Add new color with same ID
-						accum.palette[id] = {
-							...colors[accum.count],
-							id,
-							isLocked: false
-						}
-						accum.count += 1
-						return accum
-					}
-				},
-				{
-					palette: {},
-					count: 0
-				}
-			)
-
-			return { ...state, palette: container.palette }
-		}
-
 		case 'TOGGLE_LOCK': {
-			return {
-				...state,
-				palette: {
-					...state.palette,
-					[action.id]: {
-						...state.palette[action.id],
-						isLocked: !state.palette[action.id].isLocked
-					}
+			let indexID = Number(action.indexID)
+
+			let palette = state.palette.map(color => {
+				if (indexID === color.indexID) {
+					color.isLocked = !color.isLocked
 				}
-			}
+				return color
+			})
+			return { ...state, palette }
 		}
 
 		case 'ADD_ITEM': {
@@ -113,7 +88,7 @@ function reducer(state, action) {
 
 export const StoreProvider = ({ children }) => {
 	const [store, dispatch] = useReducer(reducer, initialState, {
-		type: 'INIT_PALETTE'
+		type: 'GENERATE_COLORS'
 	})
 
 	const value = {

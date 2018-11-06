@@ -88,7 +88,7 @@ const ColorCard = props => {
 			<span
 				className="lock"
 				onClick={props.toggleLock}
-				data-id={props.id}
+				data-id={props.indexID}
 			>
 				<Icon />
 			</span>
