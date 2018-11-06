@@ -18,22 +18,25 @@ const Container = styled.div`
 	align-content: flex-start;
 
 	> div {
-		margin: 0.4rem 0;
+		margin: 0.45rem 0;
 
 		@media screen and (min-width: 500px) {
-			margin: 0.5rem 1rem;
+			margin: 0.55rem 0.75rem;
 		}
-		@media screen and (min-width: 564px) {
-			margin: 1.25rem 1rem;
+		@media screen and (min-width: 708px) {
+			margin: 1.25rem 0.4rem;
 		}
-		@media screen and (min-width: 584px) {
-			margin: 1.5rem 1rem;
+		@media screen and (min-width: 709px) {
+			margin: 1.25rem 0.6rem;
 		}
-		@media screen and (min-width: 604px) {
+		@media screen and (min-width: 720px) {
+			margin: 1.5rem 0.75rem;
+		}
+		@media screen and (min-width: 745px) {
 			margin: 1.75rem 1rem;
 		}
-		@media screen and (min-width: 700px) {
-			margin: 2rem;
+		@media screen and (min-width: 765px) {
+			margin: 2rem 1rem;
 		}
 	}
 `

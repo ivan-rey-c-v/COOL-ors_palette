@@ -9,7 +9,7 @@ const Div = styled.div`
 	display: flex;
 	align-items: center;
 	font-weight: 600;
-	width: 310px;
+	width: 330px;
 
 	${props => {
 		// used in PalettesPage ColorSet
@@ -60,19 +60,19 @@ const Div = styled.div`
 	.name {
 		font-size: 0.8rem;
 		line-height: 0.8rem;
-		width: 35%;
+		width: 6.75rem;
 		padding-left: 0.25rem;
 		text-align: start;
 	}
 	.hex {
-		width: 25%;
+		width: 4.75rem;
 		padding-right: 0.25rem;
 		text-align: end;
 	}
 `
 
 const ColorBox = styled.span`
-	width: 40%;
+	flex-grow: 1;
 	height: 100%;
 
 	${props => ({

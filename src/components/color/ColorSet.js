@@ -6,7 +6,7 @@ import styled from 'styled-components'
 
 const Div = styled.div`
 	box-shadow: 1px 1px 3px gray;
-	width: calc(310px + 1rem);
+	width: calc(330px + 1rem);
 
 	.set {
 		padding: 0.5rem;
