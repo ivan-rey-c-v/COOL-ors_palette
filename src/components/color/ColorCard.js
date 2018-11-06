@@ -24,7 +24,7 @@ const Div = styled.div`
 		return css`
 			height: 2.5rem;
 			font-size: 1rem;
-			box-shadow: 2px 2px 4px lightgray;
+			box-shadow: 2px 2px 4px #60006d;
 		`
 	}};
 
