@@ -9,22 +9,22 @@ const Div = styled.div`
 	display: flex;
 	align-items: center;
 	font-weight: 600;
-	width: 250px;
+	width: 310px;
 
 	${props => {
 		// used in PalettesPage ColorSet
 		if (props.isColorSetItem) {
 			return css`
-				height: 1.25rem;
+				height: 1.75rem;
 				font-size: 0.85rem;
 			`
 		}
 
 		// default: used in HomePage ColorsContainer
 		return css`
-			height: 2.5rem;
+			height: 2.75rem;
 			font-size: 1rem;
-			box-shadow: 2px 2px 4px #60006d;
+			box-shadow: 2px 2px 4px #6b476b;
 		`
 	}};
 
@@ -58,13 +58,13 @@ const Div = styled.div`
 	}
 
 	.name {
-		font-size: 0.7rem;
-		width: 32%;
+		font-size: 0.8rem;
+		width: 35%;
 		padding-left: 0.25rem;
 		text-align: start;
 	}
 	.hex {
-		width: 28%;
+		width: 25%;
 		padding-right: 0.25rem;
 		text-align: end;
 	}
