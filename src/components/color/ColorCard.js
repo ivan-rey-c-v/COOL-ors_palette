@@ -15,8 +15,8 @@ const Div = styled.div`
 		// used in PalettesPage ColorSet
 		if (props.isColorSetItem) {
 			return css`
-				height: 1.75rem;
-				font-size: 0.85rem;
+				height: 2rem;
+				font-size: 0.75rem;
 			`
 		}
 
@@ -59,6 +59,7 @@ const Div = styled.div`
 
 	.name {
 		font-size: 0.8rem;
+		line-height: 0.8rem;
 		width: 35%;
 		padding-left: 0.25rem;
 		text-align: start;

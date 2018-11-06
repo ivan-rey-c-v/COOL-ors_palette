@@ -12,14 +12,13 @@ const Div = styled.div`
 		margin: 0 auto;
 		height: 1rem;
 		width: 1rem;
-		fill: tomato;
+		fill: darkviolet;
 	}
 
 	p {
 		padding-top: 0.1rem;
 		font-size: 0.75rem;
 		font-weight: 600;
-		color: gray;
 	}
 `
 

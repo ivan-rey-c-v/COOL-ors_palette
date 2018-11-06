@@ -41,7 +41,8 @@ const Modal = styled.div`
 		justify-content: space-between;
 
 		button {
-			padding: 0.4rem 1.25rem;
+			padding: 0.75rem 1.7rem;
+			font-size: inherit;
 			font-weight: 600;
 			cursor: pointer;
 			letter-spacing: 1px;

@@ -6,15 +6,16 @@ import styled from 'styled-components'
 
 const Div = styled.div`
 	box-shadow: 1px 1px 3px gray;
-	width: calc(250px + 1rem);
+	width: calc(310px + 1rem);
 
 	.set {
 		padding: 0.5rem;
 	}
 
 	.title {
-		padding: 0.25rem 1rem;
+		padding: 0.5rem 1rem;
 		font-weight: 600;
+		background-color: #f7f7f7;
 		display: flex;
 		justify-content: space-between;
 
