@@ -17,6 +17,10 @@ const Container = styled.div`
 	> div {
 		margin: 0.75rem;
 	}
+
+	.msg {
+		color: darkgray;
+	}
 `
 
 const PalettesContainer = props => {
@@ -31,6 +35,11 @@ const PalettesContainer = props => {
 					/>
 				)
 			})}
+			{props.colorSets.length === 0 && (
+				<div className="msg">
+					<h2>You don't have saved color sets</h2>
+				</div>
+			)}
 		</Container>
 	)
 }

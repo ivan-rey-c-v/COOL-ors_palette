@@ -26,6 +26,7 @@ const Modal = styled.div`
 
 		input {
 			font-size: 1rem;
+			font-weight: 600;
 			width: 100%;
 			padding: 0.25rem 0.5rem;
 			color: inherit;
@@ -79,7 +80,11 @@ const SaveColorModal = props => {
 			<Modal>
 				<div>
 					{props.colors.map(color => (
-						<ColorCard {...color} isColorSetItem key={color.id} />
+						<ColorCard
+							{...color}
+							isColorSetItem
+							key={color.indexID}
+						/>
 					))}
 				</div>
 				<div className="title-input">

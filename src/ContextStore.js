@@ -72,7 +72,12 @@ function reducer(state, action) {
 				title: action.title,
 				colors: rawColors
 			})
-			return { ...state, colorSets }
+			// set isLocked = false
+			let palette = state.palette.map(color => {
+				color.isLocked = false
+				return color
+			})
+			return { palette, colorSets }
 		}
 
 		case 'REMOVE_ITEM': {

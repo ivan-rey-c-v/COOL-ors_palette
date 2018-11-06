@@ -58,20 +58,20 @@ const Div = styled.div`
 	}
 
 	.name {
-		font-size: 0.75rem;
-		width: 40%;
+		font-size: 0.7rem;
+		width: 32%;
 		padding-left: 0.25rem;
 		text-align: start;
 	}
 	.hex {
-		width: 30%;
+		width: 28%;
 		padding-right: 0.25rem;
 		text-align: end;
 	}
 `
 
 const ColorBox = styled.span`
-	width: 30%;
+	width: 40%;
 	height: 100%;
 
 	${props => ({
