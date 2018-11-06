@@ -1,4 +1,9 @@
-# Color palette PWA
+# [COOL]ors palette PWA
+
+[SITE](https://coolors-palette.netlify.com/)
+
+
+
 
 Credits:
 1. [evergreen-segment](https://evergreen.segment.com) for svg icons
