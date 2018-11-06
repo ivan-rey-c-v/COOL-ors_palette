@@ -35,17 +35,17 @@ const Div = styled.div`
 	}
 `
 
-const ColorSet = ({ title, colors }) => {
+const ColorSet = props => {
 	return (
 		<Div>
 			<div className="set">
-				{colors.map(color => (
+				{props.colors.map(color => (
 					<ColorCard {...color} isColorSetItem key={color.name} />
 				))}
 			</div>
 			<div className="title">
-				<span>{title}</span>
-				<span>
+				<span>{props.title}</span>
+				<span onClick={props.removeSet(props.id)}>
 					<TrashSVG />
 				</span>
 			</div>

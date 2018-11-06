@@ -7,12 +7,13 @@ export function setList(list) {
 
 export function getList() {
 	let stringedList = localStorage.getItem(storageName)
-	return JSON.parse(stringedList)
+
+	return stringedList ? JSON.parse(stringedList) : []
 }
 
-export function removeItem(item) {
+export function removeItem(id) {
 	let list = getList()
-	let newList = list.filter(x => x !== item)
+	let newList = list.filter(set => set.id !== id)
 
 	setList(newList)
 	return newList

@@ -1,14 +1,14 @@
 import React, { createContext, useReducer } from 'react'
 import getRandomItems from './utils/getRandomItems'
 import crayolaColors from './utils/crayolaColors'
-import { addItem } from './utils/webStorage'
+import { addItem, getList, removeItem } from './utils/webStorage'
 import randomID from './utils/randomID'
 
 export const StoreContext = createContext()
 
 const initialState = {
 	palette: null,
-	colorSets: []
+	colorSets: getList()
 }
 
 function reducer(state, action) {
@@ -92,12 +92,17 @@ function reducer(state, action) {
 				hex,
 				name
 			}))
-			addItem({
+			let colorSets = addItem({
 				id: randomID(),
 				title: action.title,
 				colors: rawColors
 			})
-			return state
+			return { ...state, colorSets }
+		}
+
+		case 'REMOVE_ITEM': {
+			const colorSets = removeItem(action.id)
+			return { ...state, colorSets }
 		}
 
 		default: {
